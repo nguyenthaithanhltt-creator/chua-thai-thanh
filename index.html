@@ -8,7 +8,7 @@
 </style></head><body>
 <header><div class="brand"><span class="brand-icon">❋</span><div><h1>Chùa An Nhiên</h1><small>STUDIO CẢNH LIVE · BẢN MẪU CỦA BẠN</small></div></div><div class="header-note">Một góc bình yên, mang dấu ấn riêng.</div><span class="badge">Focus người tặng · V11</span></header>
 <main><section class="viewer"><div class="viewer-top"><span>XEM TRƯỚC CẢNH</span><span>1080 × 1920 · 9:16</span></div><div class="stage"><canvas id="scene" width="1080" height="1920" aria-label="Cảnh chùa hoạt hình với nhân vật và hoa sen"></canvas></div><div class="viewer-bottom"><button id="openScene">↗ Mở cảnh riêng</button><button id="snapshot">↓ Chụp ảnh cảnh</button><button id="pause">Ⅱ Tạm dừng</button></div><p class="viewer-note">Điện thờ vàng ấm · Chú tiểu áo lam · Hiệu ứng hoa sen</p></section>
-<aside class="panel"><section class="card"><div class="kicker">GIỌNG ĐỌC & CHAT</div><h2>Lời chào có tiếng nói</h2><label for="voiceChoice">Giọng tiếng Việt trên máy</label><select id="voiceChoice"></select><label for="voiceRate">Tốc độ đọc</label><input id="voiceRate" type="range" min="0.7" max="1.3" step="0.05" value="0.95"><label for="voiceVolume">Âm lượng</label><input id="voiceVolume" type="range" min="0" max="1" step="0.1" value="0.8"><label class="switch">Đọc chat của khách<input id="readChat" type="checkbox" checked></label><div class="buttons"><button class="action" id="enableVoice">▶ Bật giọng đọc / Thử</button><button class="action" id="stopVoice">Tắt giọng đọc</button><button class="action" id="testChat">Thử chat riêng</button><button class="action" id="resetBoard">Xóa bảng quà</button></div><p class="hint" id="voiceStatus" role="status">Bấm bật để cho phép phát tiếng.</p><p class="hint">Bật giọng ở một cửa sổ. LIVE Studio cần thu âm thanh Chrome/Edge để người xem nghe được. Bảng vàng chỉ tính quà thật nhận từ lúc mở cảnh; điểm dùng giá trị quà nếu có, nếu thiếu thì tính số món.</p></section><section class="card"><div class="kicker">KẾT NỐI TIKTOK LIVE</div><h2>Khách thật vào chùa</h2><p id="liveStatus" role="status" style="line-height:1.6;color:#8a6b3f">Đang tìm ứng dụng TikFinity…</p><p id="liveEvent" class="hint">Chưa nhận tương tác.</p><button class="primary" id="reconnectLive">Kết nối lại TikFinity</button><p class="hint">Giữ TikFinity Desktop mở và nối đúng phiên LIVE trên cùng máy. Khi nhận người vào phòng hoặc bình luận đầu tiên, cảnh tạo nhân vật có tên của người đó. Bình luận “sen”, “hương” hoặc “lễ” để thử hiệu ứng. Khách mẫu sẽ được dọn khi có khách thật.</p><p class="hint">Nếu không có sự kiện vào phòng, hãy dùng một tài khoản khác bình luận để kiểm tra. Trình duyệt có thể hỏi quyền truy cập mạng cục bộ.</p></section><section class="card"><div class="kicker">01 / KHÔNG GIAN</div><h2>Chỉnh theo ý bạn</h2><label for="title">Tên hiển thị</label><input id="title" type="text" maxlength="35"><label for="subtitle">Dòng chào</label><input id="subtitle" type="text" maxlength="70"><label for="footer">Lời nhắn cuối cảnh</label><input id="footer" type="text" maxlength="85"><div class="row"><div><label for="robe">Áo lam · viền vàng</label><input id="robe" type="color" disabled title="Màu áo theo ảnh mẫu"></div><div><label for="accent">Màu bảng tên</label><input id="accent" type="color"></div></div><label for="size">Cỡ nhân vật <span id="sizeValue"></span></label><input id="size" type="range" min="70" max="130" step="5"><label for="brightness">Độ sáng nền <span id="brightnessValue"></span></label><input id="brightness" type="range" min="65" max="115" step="5"><div class="row"><label class="switch" for="petals">Cánh hoa<input id="petals" type="checkbox"></label><label class="switch" for="names">Bảng tên<input id="names" type="checkbox"></label></div><label class="switch" for="altarSmoke">Khói lư hương bay lên<input id="altarSmoke" type="checkbox"></label><label class="switch" for="livePanels">Khung lời chúc & bảng vàng<input id="livePanels" type="checkbox"></label><label class="switch" for="guestChats">Chat riêng trên đầu khách<input id="guestChats" type="checkbox"></label><label class="switch" for="giftFocus">Tự focus người tặng quà<input id="giftFocus" type="checkbox"></label><label class="file-label">＋ Thay ảnh nền của bạn<input id="backgroundFile" type="file" accept="image/png,image/jpeg,image/webp"></label><p class="hint">Tự lưu trên trình duyệt. Tải bản HTML để giữ cả nền và thiết lập, hoặc mang sang máy khác.</p></section>
+<aside class="panel"><section class="card" id="templeAccountCard"><div class="kicker">TÀI KHOẢN CHÙA ONLINE · SUPABASE</div><h2>Nhân vật của bạn</h2><p class="hint">Nhập tên một lần. Lần sau mở lại bằng cùng trình duyệt, nhân vật được nhận diện tự động.</p><label for="templePlayerName">Tên nhân vật</label><input id="templePlayerName" type="text" maxlength="22" placeholder="Ví dụ: Tâm An" autocomplete="nickname"><button class="primary" id="templeCreatePlayer" type="button" style="margin-top:10px;width:100%">Tạo nhân vật / Vào chùa</button><p id="templeAccountStatus" class="hint" role="status" style="line-height:1.6">Đang kiểm tra tài khoản...</p></section><section class="card"><div class="kicker">GIỌNG ĐỌC & CHAT</div><h2>Lời chào có tiếng nói</h2><label for="voiceChoice">Giọng tiếng Việt trên máy</label><select id="voiceChoice"></select><label for="voiceRate">Tốc độ đọc</label><input id="voiceRate" type="range" min="0.7" max="1.3" step="0.05" value="0.95"><label for="voiceVolume">Âm lượng</label><input id="voiceVolume" type="range" min="0" max="1" step="0.1" value="0.8"><label class="switch">Đọc chat của khách<input id="readChat" type="checkbox" checked></label><div class="buttons"><button class="action" id="enableVoice">▶ Bật giọng đọc / Thử</button><button class="action" id="stopVoice">Tắt giọng đọc</button><button class="action" id="testChat">Thử chat riêng</button><button class="action" id="resetBoard">Xóa bảng quà</button></div><p class="hint" id="voiceStatus" role="status">Bấm bật để cho phép phát tiếng.</p><p class="hint">Bật giọng ở một cửa sổ. LIVE Studio cần thu âm thanh Chrome/Edge để người xem nghe được. Bảng vàng chỉ tính quà thật nhận từ lúc mở cảnh; điểm dùng giá trị quà nếu có, nếu thiếu thì tính số món.</p></section><section class="card"><div class="kicker">KẾT NỐI TIKTOK LIVE</div><h2>Khách thật vào chùa</h2><p id="liveStatus" role="status" style="line-height:1.6;color:#8a6b3f">Đang tìm ứng dụng TikFinity…</p><p id="liveEvent" class="hint">Chưa nhận tương tác.</p><button class="primary" id="reconnectLive">Kết nối lại TikFinity</button><p class="hint">Giữ TikFinity Desktop mở và nối đúng phiên LIVE trên cùng máy. Khi nhận người vào phòng hoặc bình luận đầu tiên, cảnh tạo nhân vật có tên của người đó. Bình luận “sen”, “hương” hoặc “lễ” để thử hiệu ứng. Khách mẫu sẽ được dọn khi có khách thật.</p><p class="hint">Nếu không có sự kiện vào phòng, hãy dùng một tài khoản khác bình luận để kiểm tra. Trình duyệt có thể hỏi quyền truy cập mạng cục bộ.</p></section><section class="card"><div class="kicker">01 / KHÔNG GIAN</div><h2>Chỉnh theo ý bạn</h2><label for="title">Tên hiển thị</label><input id="title" type="text" maxlength="35"><label for="subtitle">Dòng chào</label><input id="subtitle" type="text" maxlength="70"><label for="footer">Lời nhắn cuối cảnh</label><input id="footer" type="text" maxlength="85"><div class="row"><div><label for="robe">Áo lam · viền vàng</label><input id="robe" type="color" disabled title="Màu áo theo ảnh mẫu"></div><div><label for="accent">Màu bảng tên</label><input id="accent" type="color"></div></div><label for="size">Cỡ nhân vật <span id="sizeValue"></span></label><input id="size" type="range" min="70" max="130" step="5"><label for="brightness">Độ sáng nền <span id="brightnessValue"></span></label><input id="brightness" type="range" min="65" max="115" step="5"><div class="row"><label class="switch" for="petals">Cánh hoa<input id="petals" type="checkbox"></label><label class="switch" for="names">Bảng tên<input id="names" type="checkbox"></label></div><label class="switch" for="altarSmoke">Khói lư hương bay lên<input id="altarSmoke" type="checkbox"></label><label class="switch" for="livePanels">Khung lời chúc & bảng vàng<input id="livePanels" type="checkbox"></label><label class="switch" for="guestChats">Chat riêng trên đầu khách<input id="guestChats" type="checkbox"></label><label class="switch" for="giftFocus">Tự focus người tặng quà<input id="giftFocus" type="checkbox"></label><label class="file-label">＋ Thay ảnh nền của bạn<input id="backgroundFile" type="file" accept="image/png,image/jpeg,image/webp"></label><p class="hint">Tự lưu trên trình duyệt. Tải bản HTML để giữ cả nền và thiết lập, hoặc mang sang máy khác.</p></section>
 <section class="card"><div class="kicker">02 / THỬ TƯƠNG TÁC</div><h2>Đón khách ghé chùa</h2><div class="row"><div><label for="guest">Tên khách</label><input id="guest" type="text" maxlength="22" value="An Nhiên"></div><div><label for="appearance">Nhân vật</label><select id="appearance"><option value="random">Ngẫu nhiên cả hai</option><option value="female">Nữ áo lam · tóc búi</option><option value="monk">Chú tiểu áo lam</option></select></div></div><label for="wish">Lời chúc hiện trên cảnh</label><input id="wish" type="text" maxlength="90" value="Chúc mọi người luôn bình an"><div class="buttons"><button class="action" id="join">☺ Khách vào</button><button class="action" id="bow">♧ Chắp tay lễ Phật</button><button class="action" id="lotus">❀ Dâng hoa sen</button><button class="action" id="incense">♨ Dâng hương</button><button class="action" id="heart">♡ Thả tim</button><button class="action" id="message">☁ Gửi lời chúc</button></div><label class="switch" for="roam">Khách tự di chuyển nhẹ<input id="roam" type="checkbox"></label><button class="action" id="gift" style="width:100%;margin-top:8px">🎁 Thử tặng quà</button><button class="action" id="walk" style="width:100%;margin-top:8px">↗ Cho khách này di chuyển</button><p class="hint">Bấm vào một khách trong cảnh, rồi bấm vị trí trên sân để đưa khách đến đó. Có thể tắt tự di chuyển để khách ngồi yên.</p><label class="switch" for="demo">Chạy thử tự động<input id="demo" type="checkbox"></label><div class="row"><button class="secondary" id="clear">Dọn nhân vật</button><button class="secondary" id="sample">Nạp khách mẫu</button></div><div id="status" role="status">Các tên trên cảnh là dữ liệu mẫu.</div></section>
 <section class="card"><div class="kicker">03 / LƯU & PHÁT</div><h2>Mang cảnh lên LIVE</h2><button class="primary" id="download">↓ Tải bản HTML đã chỉnh</button><p class="hint">Bản mẫu chạy độc lập, không cần cài thêm. Các nút dùng để thử. Phần Kết nối TikTok LIVE phía trên cho biết cảnh đã nhận dữ liệu thật hay chưa.</p><details><summary>Cách sử dụng cảnh</summary><p class="hint">1. Chỉnh cảnh rồi tải HTML.<br>2. Mở tệp đã tải bằng Chrome hoặc Edge.<br>3. Bấm “Mở cảnh riêng”, dùng cửa sổ đó làm nguồn quay cửa sổ trong phần mềm LIVE.<br>4. Với OBS: thêm nguồn Trình duyệt, chọn tệp cục bộ, rộng 1080 và cao 1920. Bản HTML tải về sẽ tự hiện cảnh khi chạy trong OBS.<br><br>Bản mẫu chưa có nhạc. Để nhận khách thật, giữ TikFinity Desktop kết nối phiên LIVE trên cùng máy.</p></details><details><summary>Khôi phục thiết lập</summary><p class="hint">Giữ nguyên các tệp, chỉ đưa thiết lập và nền về bản gốc.</p><button class="secondary" id="reset" style="margin-top:10px">Khôi phục mặc định</button></details></section></aside></main><div class="toast" id="toast" role="status"></div>
 <script id="preset" type="application/json">{"title":"Chùa An Nhiên","subtitle":"Ghé chùa · Gửi một lời lành","footer":"Dâng hoa sen · Gửi lời chúc · Cùng nhau bình an","robe":"#a6bac8","accent":"#453325","size":100,"brightness":100,"petals":true,"names":true,"background":"","demo":false,"roam":true,"altarSmoke":true,"livePanels":true,"guestChats":true,"giftFocus":true}</script>
@@ -294,5 +294,87 @@ if(window.speechSynthesis){window.speechSynthesis.addEventListener('voiceschange
 
 apply(false);sample(false);if(isOverlay)send({type:'request'});requestAnimationFrame(drawFrame);
 connectTikFinity();
+</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* Chùa An Nhiên - kết nối tài khoản người chơi; không thay đổi engine LIVE */
+(function(){
+'use strict';
+const URL='https://wwusklppaqhqsdnsdaem.supabase.co';
+const KEY='sb_publishable_YjMXG0j5-gWVNUKLjnyKMg_SBbis43y';
+const nameInput=document.getElementById('templePlayerName');
+const button=document.getElementById('templeCreatePlayer');
+const status=document.getElementById('templeAccountStatus');
+const say=(message)=>{status.textContent=message};
+if(!window.supabase?.createClient){say('Chưa tải được thư viện Supabase. Kiểm tra kết nối Internet rồi tải lại trang.');return;}
+const client=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,storageKey:'chua-an-nhien-player-auth'}});
+let currentPlayer=null;
+let syncTimer=null;
+let syncBusy=false;
+let lastSyncCount=0;
+// Đồng bộ danh sách nhân vật đã đăng ký; chưa phải trạng thái online thực tế.
+async function syncVisitors(){
+ if(syncBusy || !currentPlayer) return;
+ syncBusy=true;
+ try{
+  const {data,error}=await client.from('temple_players')
+   .select('id,display_name,avatar_type')
+   .eq('is_active',true).order('joined_at',{ascending:false}).limit(30);
+  if(error) throw error;
+  lastSyncCount=data.length;
+  for(const p of data){
+   if(typeof emit==='function')emit({type:'join',name:p.display_name,look:'monk',viewerId:'supabase:'+p.id},false);
+  }
+  say('Đã vào chùa: '+currentPlayer.display_name+' ✓ · Đồng bộ '+lastSyncCount+' nhân vật đã đăng ký');
+ }catch(e){say('Đã vào chùa · Chưa đồng bộ được danh sách: '+(e.message||e));}
+ finally{syncBusy=false;}
+}
+function startVisitorSync(){
+ if(syncTimer)clearInterval(syncTimer);
+ syncVisitors();
+ syncTimer=setInterval(syncVisitors,5000);
+}
+async function loadPlayer(user){
+ const {data,error}=await client.from('temple_players').select('id,display_name,avatar_type').eq('user_id',user.id).maybeSingle();
+ if(error)throw error;
+ if(data){currentPlayer=data;nameInput.value=data.display_name;nameInput.disabled=true;button.textContent='Vào chùa bằng nhân vật đã lưu';say('Đã nhận diện: '+data.display_name+' ✓');return data;}
+ currentPlayer=null;nameInput.disabled=false;button.textContent='Tạo nhân vật / Vào chùa';say('Chưa có nhân vật. Nhập tên để tạo.');return null;
+}
+async function ensureSession(){
+ let {data:{session},error}=await client.auth.getSession();if(error)throw error;
+ if(!session){const result=await client.auth.signInAnonymously();if(result.error)throw result.error;session=result.data.session;}
+ if(!session?.user)throw new Error('Không nhận được tài khoản người chơi');
+ return session.user;
+}
+function enter(player){
+ if(typeof emit==='function')emit({type:'join',name:player.display_name,look:'monk',viewerId:'supabase:'+player.id});
+ say('Đã vào chùa: '+player.display_name+' ✓ Đang đồng bộ nhân vật...');
+ startVisitorSync();
+}
+async function init(){
+ button.disabled=true;
+ try{const user=await ensureSession();await loadPlayer(user)}
+ catch(e){say('Chưa kết nối được: '+(e.message||e));}
+ finally{button.disabled=false;}
+}
+button.addEventListener('click',async()=>{
+ button.disabled=true;
+ try{
+  const user=await ensureSession();
+  if(currentPlayer){enter(currentPlayer);return;}
+  const name=nameInput.value.trim().replace(/\s+/g,' ');
+  if(name.length<1||name.length>22){say('Vui lòng nhập tên từ 1 đến 22 ký tự.');return;}
+  say('Đang lưu nhân vật...');
+  const {data,error}=await client.from('temple_players').insert({display_name:name,user_id:user.id,avatar_type:'visitor',is_active:true}).select('id,display_name,avatar_type').single();
+  if(error){
+   // Trường hợp tài khoản đã tạo nhân vật ở tab khác: đọc lại, không tạo trùng.
+   if(error.code==='23505'){const existing=await loadPlayer(user);if(existing){enter(existing);return;}}
+   throw error;
+  }
+  currentPlayer=data;nameInput.disabled=true;button.textContent='Vào chùa bằng nhân vật đã lưu';enter(data);
+ }catch(e){say('Không lưu được nhân vật: '+(e.message||e));}
+ finally{button.disabled=false;}
+});
+init();
+})();
 </script></body></html>
 
